@@ -1,0 +1,77 @@
+package com.pack1;
+
+public class LinkedList {
+	private int size;
+	private Node head;//begin linkedlist
+	//1.to check whether LL is empty or not
+	public boolean isEmpty() {
+		return head==null;
+	}
+	public int size() {
+		return size;
+	}
+	//2.to add a value into LL
+	//add at the bottom 
+	public void add(Object value) {
+		//create the node
+		Node node=new Node();
+		//insert/set value into the node
+		node.setValue(value);
+		if(isEmpty())
+		{
+			head=node;
+			size++;
+		}
+		else {
+			//logic
+			Node last=head;
+			while(last !=null) {
+				if(last.getNext()==null) {
+					break;
+				}
+				last=last.getNext();
+			}
+			last.setNext(node);
+			size++;
+		}
+	}
+		public String toString() {
+			if(isEmpty())
+				return "[ ]";
+			String str="[";
+			Node ref=head;
+			while(ref!=null) {
+				str=str+ref.getValue();
+				if(ref.getNext()!=null) 
+					str=str+",";
+				ref=ref.getNext();
+			}
+			//return head+" ";
+			str=str+"]";
+			return str;
+		}
+		public int length() {
+			int count=0;
+			Node ref=head;
+			while(ref!=null)
+			{
+				count++;
+				ref=ref.getNext();
+			}
+			return count;
+		}
+		public Object get(int index) {
+			Object value=null;
+			Node ref=head;
+			if(index>=size || index<0) {
+				throw new IndexOutOfBoundsException();
+			}
+			for(int i=0;i<=index;i++)
+			{
+				value=ref.getValue();
+				ref=ref.getNext();
+			}
+			return value;
+		}
+		
+}
